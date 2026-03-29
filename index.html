@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nightingale RN Academy offers NCLEX-RN review, BLS, ACLS, and PALS provider courses with expert support to help students prepare, pass, and succeed." />
+  <title>Nightingale RN Academy | Prepare. Pass. Succeed.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #071735;
+      --bg-2: #0a2350;
+      --card: rgba(255,255,255,0.08);
+      --card-2: rgba(255,255,255,0.12);
+      --text: #f5f7fb;
+      --muted: #c6d3ea;
+      --gold: #e7b551;
+      --gold-soft: #f5d58f;
+      --red: #b2121d;
+      --red-dark: #7c0812;
+      --line: rgba(255,255,255,0.14);
+      --shadow: 0 20px 80px rgba(0,0,0,0.35);
+      --radius: 28px;
+      --max: 1200px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(231,181,81,0.14), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(54,124,255,0.18), transparent 20%),
+        linear-gradient(160deg, #04101f 0%, #071a38 35%, #0a2350 100%);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+    .nav-wrap {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(4, 16, 31, 0.66);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex; flex-direction: column;
+      line-height: 1;
+    }
+    .brand .script {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: white;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+    }
+    .brand .sub {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.74rem;
+      margin-top: 0.2rem;
+      font-weight: 700;
+    }
+    .nav-links {
+      display: flex; gap: 1.2rem; align-items: center;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+    .nav-links a:hover { color: white; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.95rem 1.3rem; border-radius: 999px;
+      font-weight: 700; transition: 0.25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold) 0%, #c98f25 100%);
+      color: #111;
+      box-shadow: 0 14px 40px rgba(231,181,81,0.24);
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary {
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+      color: white;
+    }
+    .hero {
+      padding: 4rem 0 2rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; gap: .6rem; align-items: center;
+      padding: .55rem .9rem;
+      border: 1px solid rgba(231,181,81,0.24);
+      border-radius: 999px;
+      background: rgba(231,181,81,0.08);
+      color: var(--gold-soft);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+    h1 .script-line {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.01em;
+    }
+    h1 .bold-line {
+      display: block;
+      font-weight: 800;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .hero-copy p {
+      margin: 1.3rem 0 1.5rem;
+      max-width: 42rem;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      margin-top: 1.8rem;
+    }
+    .stat {
+      padding: 1rem 1.1rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat strong { display: block; font-size: 1.2rem; margin-bottom: .35rem; }
+    .stat span { color: var(--muted); font-size: .92rem; }
+    .hero-visual {
+      position: relative;
+      padding: 1rem;
+    }
+    .glow {
+      position: absolute; inset: 8% 8% auto auto;
+      width: 55%; aspect-ratio: 1;
+      background: radial-gradient(circle, rgba(231,181,81,.24), transparent 70%);
+      filter: blur(8px);
+      z-index: 0;
+    }
+    .flyer-card {
+      position: relative; z-index: 1;
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.12);
+      transform: perspective(1200px) rotateY(-8deg) rotateX(2deg);
+      transform-origin: center;
+    }
+    .flyer-card img { width: 100%; height: auto; }
+    .section {
+      padding: 5rem 0;
+    }
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 2rem;
+    }
+    .section-title span {
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: .24em;
+      font-size: .75rem;
+      font-weight: 800;
+    }
+    .section-title h2 {
+      margin: .7rem 0;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.03;
+    }
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1.03rem;
+    }
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.35rem;
+    }
+    .course-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .course-card::after {
+      content: "";
+      position: absolute; inset: auto -15% -35% auto;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .course-card.red {
+      background: linear-gradient(180deg, rgba(178,18,29,.88), rgba(113, 7, 16, .94));
+    }
+    .course-card.blue {
+      background: linear-gradient(180deg, rgba(8,35,92,.95), rgba(7,21,53,.94));
+    }
+    .course-tag {
+      display: inline-flex;
+      padding: .45rem .8rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.9);
+      margin-bottom: 1rem;
+    }
+    .course-card h3 {
+      margin: 0 0 .7rem;
+      font-size: 1.8rem;
+    }
+    .course-card p {
+      color: rgba(255,255,255,0.86);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .checklist {
+      list-style: none;
+      padding: 0; margin: 0;
+      display: grid; gap: .85rem;
+    }
+    .checklist li {
+      display: flex; gap: .75rem; align-items: flex-start;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .check {
+      width: 1.5rem; height: 1.5rem; min-width: 1.5rem;
+      border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.12);
+      margin-top: .12rem;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .why-card {
+      padding: 1.3rem;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .why-card h4 { margin: .9rem 0 .55rem; font-size: 1.15rem; }
+    .why-card p { margin: 0; color: var(--muted); line-height: 1.7; }
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.35rem;
+      align-items: stretch;
+    }
+    .info-panel {
+      padding: 1.6rem;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+    .info-panel h3 {
+      margin-top: 0;
+      margin-bottom: .85rem;
+      font-size: 1.55rem;
+    }
+    .info-panel p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0 0 1rem;
+    }
+    .steps {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 1rem;
+      align-items: start;
+      padding: 1rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #111;
+      background: linear-gradient(135deg, var(--gold) 0%, #c98f25 100%);
+    }
+    .step h4 {
+      margin: .2rem 0 .35rem;
+      font-size: 1.08rem;
+    }
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: grid;
+      gap: .85rem;
+    }
+    .feature-list li {
+      padding: .95rem 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .feature-list strong {
+      color: white;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .testimonial {
+      padding: 1.35rem;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .testimonial p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .testimonial strong {
+      display: block;
+      font-size: 1rem;
+    }
+    .testimonial span {
+      color: var(--gold-soft);
+      font-size: .92rem;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .faq-item {
+      padding: 1.25rem;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .faq-item h4 {
+      margin: 0 0 .6rem;
+      font-size: 1.06rem;
+    }
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .icon-box {
+      width: 52px; height: 52px; border-radius: 16px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(231,181,81,.26), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.12);
+      font-size: 1.35rem;
+    }
+    .cta {
+      padding-bottom: 6rem;
+    }
+    .cta-card {
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 1.5rem;
+      padding: 2rem;
+      border-radius: 32px;
+      background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: var(--shadow);
+    }
+    .contact-list {
+      display: grid; gap: .9rem;
+      margin-top: 1.4rem;
+    }
+    .contact-item {
+      display: flex; gap: .9rem; align-items: center;
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .contact-item strong { display: block; }
+    .contact-item span { color: var(--muted); font-size: .92rem; }
+    .hours {
+      border-radius: 24px;
+      padding: 1.4rem;
+      background: linear-gradient(180deg, rgba(8,35,92,.96), rgba(7,21,53,.9));
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .hours h3 { margin-top: 0; font-size: 1.3rem; }
+    .hours p { color: var(--muted); line-height: 1.75; }
+    .hours ul { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: .85rem; }
+    .hours li { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: .7rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+    footer {
+      padding: 1.3rem 0 2.5rem;
+      color: rgba(255,255,255,.65);
+      font-size: .94rem;
+    }
+    .footer-row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    @media (max-width: 1050px) {
+      .hero-grid, .cta-card, .course-grid, .why-grid, .split-section, .testimonial-grid, .faq-grid { grid-template-columns: 1fr; }
+      .flyer-card { transform: none; max-width: 620px; margin: 0 auto; }
+      .hero { padding-top: 3rem; }
+    }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .stats { grid-template-columns: 1fr; }
+      .section { padding: 4rem 0; }
+      h1 { font-size: clamp(2.4rem, 14vw, 4.2rem); }
+      .hero-copy p, .section-title p { font-size: 1rem; }
+      .btn { width: 100%; }
+      .hero-actions { flex-direction: column; }
+      .cta-card { padding: 1.35rem; }
+      .course-card { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a href="#top" class="brand" aria-label="Nightingale RN Academy home">
+          <span class="script">Nightingale</span>
+          <span class="sub">RN Academy</span>
+        </a>
+        <div class="nav-links">
+          <a href="#courses">Courses</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#why-us">Why Us</a>
+          <a href="#faqs">FAQs</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="btn btn-primary" href="tel:12813239428">Enroll Today</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Prepare. Pass. Succeed.</div>
+          <h1>
+            <span class="script-line">Nightingale</span>
+            <span class="bold-line">RN Academy</span>
+          </h1>
+          <p>
+            Modern nursing exam prep and life-saving certification training designed to help students build confidence, strengthen clinical knowledge, and move forward with clarity. From NCLEX-RN review to BLS, ACLS, and PALS provider courses, Nightingale RN Academy is here to support your next step.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:12813239428">Call to Enroll</a>
+            <a class="btn btn-secondary" href="#courses">Explore Programs</a>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <strong>NCLEX-RN Review</strong>
+              <span>Comprehensive review, strategies, and practice support.</span>
+            </div>
+            <div class="stat">
+              <strong>BLS / ACLS / PALS</strong>
+              <span>Essential provider-level training for healthcare professionals.</span>
+            </div>
+            <div class="stat">
+              <strong>Expert Guidance</strong>
+              <span>Practical instruction focused on confidence and readiness.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="glow"></div>
+          <div class="flyer-card">
+            <img src="flyer.png" alt="Nightingale RN Academy flyer featuring NCLEX-RN review and BLS ACLS PALS provider courses" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="courses">
+      <div class="container">
+        <div class="section-title">
+          <span>Programs</span>
+          <h2>Focused training for exam success, certification readiness, and real-world confidence.</h2>
+          <p>
+            Nightingale RN Academy supports future nurses and healthcare professionals with structured review, practical instruction, and a supportive learning environment. Every course is centered on clarity, preparation, and confidence so students can move forward ready to perform.
+          </p>
+        </div>
+
+        <div class="course-grid">
+          <article class="course-card blue">
+            <div class="course-tag">Featured Program</div>
+            <h3>NCLEX-RN Review Course</h3>
+            <p>Designed for nursing graduates preparing for licensure, this review course helps students strengthen core concepts, identify weak areas, and approach the NCLEX with a stronger testing strategy. The goal is not only to study more, but to study smarter with clear direction and practical reinforcement.</p>
+            <ul class="checklist">
+              <li><span class="check">✓</span><span>Comprehensive content review across major nursing topics</span></li>
+              <li><span class="check">✓</span><span>Test-taking strategies that improve confidence under pressure</span></li>
+              <li><span class="check">✓</span><span>Practice-question focused preparation and guided support</span></li>
+              <li><span class="check">✓</span><span>Encouraging instruction built around passing the NCLEX</span></li>
+            </ul>
+          </article>
+
+          <article class="course-card red">
+            <div class="course-tag">Provider Courses</div>
+            <h3>BLS, ACLS &amp; PALS</h3>
+            <p>These provider courses are ideal for healthcare professionals, students, and clinical team members who need current life support training. Each course is focused on essential response knowledge, procedural confidence, and readiness for professional requirements.</p>
+            <ul class="checklist">
+              <li><span class="check">✓</span><span>Basic Life Support (BLS) for foundational emergency response</span></li>
+              <li><span class="check">✓</span><span>Advanced Cardiovascular Life Support (ACLS) for advanced cardiac care scenarios</span></li>
+              <li><span class="check">✓</span><span>Pediatric Advanced Life Support (PALS) for pediatric emergency response preparation</span></li>
+              <li><span class="check">✓</span><span>Career-ready certification support for healthcare settings</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-title">
+          <span>How It Works</span>
+          <h2>A simple path from enrollment to confidence.</h2>
+          <p>
+            Whether you are preparing for the NCLEX or enrolling in a provider certification course, Nightingale RN Academy keeps the process straightforward and student-friendly.
+          </p>
+        </div>
+        <div class="split-section">
+          <div class="info-panel">
+            <h3>Your learning journey</h3>
+            <div class="steps">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                  <h4>Reach out and enroll</h4>
+                  <p>Call or email to ask about the program that fits your needs, whether that is NCLEX-RN review or a provider course such as BLS, ACLS, or PALS.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                  <h4>Get course guidance</h4>
+                  <p>Receive clear direction on the training path, expectations, and the type of preparation needed so you can begin with confidence and focus.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                  <h4>Train with purpose</h4>
+                  <p>Build knowledge through structured review, practical course content, and preparation designed to help you understand, retain, and apply what you learn.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                  <h4>Move forward prepared</h4>
+                  <p>Complete your training with greater readiness, stronger confidence, and a more professional foundation for exams, certifications, and clinical environments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="info-panel">
+            <h3>Who these courses are for</h3>
+            <p>
+              Nightingale RN Academy serves aspiring nurses, nursing graduates, healthcare students, and professionals who want focused instruction and a more supportive path to exam or certification readiness.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Nursing graduates:</strong> Ideal for graduates preparing for the NCLEX-RN and looking for a structured, confidence-building review experience.</li>
+              <li><strong>Healthcare students:</strong> Great for students who need BLS, ACLS, or PALS training to support academic and clinical goals.</li>
+              <li><strong>Working professionals:</strong> Useful for providers who want to refresh essential emergency response skills and maintain professional readiness.</li>
+              <li><strong>Career-focused learners:</strong> A strong choice for those who want serious preparation, practical support, and a polished professional next step.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why-us">
+      <div class="container">
+        <div class="section-title">
+          <span>Why Nightingale</span>
+          <h2>A more polished, trustworthy first impression online.</h2>
+          <p>
+            This one-page site is designed to feel premium, clear, and conversion-focused, while staying visually aligned with the flyer's blue-and-gold brand style.
+          </p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="icon-box">✦</div>
+            <h4>Modern visual design</h4>
+            <p>Glassmorphism, strong gradients, large typography, and clean spacing give the academy a current and professional look.</p>
+          </div>
+          <div class="why-card">
+            <div class="icon-box">✓</div>
+            <h4>Flyer-based content</h4>
+            <p>The homepage carries over the exact core offerings and messaging from the flyer so branding remains consistent.</p>
+          </div>
+          <div class="why-card">
+            <div class="icon-box">☎</div>
+            <h4>Built to convert</h4>
+            <p>Clear enroll buttons, direct call links, and prominent contact details make it easy for prospective students to take action fast.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta" id="contact">
+      <div class="container">
+        <div class="cta-card">
+          <div>
+            <div class="section-title" style="margin-bottom:0;">
+              <span>Enroll Today</span>
+              <h2>Take the next step toward confidence and certification.</h2>
+              <p>
+                Call, email, or visit online to learn more about course options, ask questions about enrollment, and take the next step with a training academy built around preparation and success. Every contact point on this page is live and ready to use.
+              </p>
+            </div>
+            <div class="contact-list">
+              <a class="contact-item" href="tel:12813239428">
+                <div class="icon-box">📞</div>
+                <div>
+                  <strong>(281) 323-9428</strong>
+                  <span>Tap to call now</span>
+                </div>
+              </a>
+              <a class="contact-item" href="mailto:nightingale.rn.academy@gmail.com">
+                <div class="icon-box">✉</div>
+                <div>
+                  <strong>nightingale.rn.academy@gmail.com</strong>
+                  <span>Send an email inquiry</span>
+                </div>
+              </a>
+              <a class="contact-item" href="https://www.nightingalernacademy.com" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box">⌘</div>
+                <div>
+                  <strong>www.nightingalernacademy.com</strong>
+                  <span>Official website</span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <aside class="hours">
+            <h3>Program Highlights</h3>
+            <p>
+              Nightingale RN Academy is positioned for learners who want a professional, encouraging, and clearly presented training experience. The academy's message is simple: prepare thoroughly, build confidence, and move forward ready.
+            </p>
+            <ul>
+              <li><span>Focused exam review</span><strong>NCLEX-RN</strong></li>
+              <li><span>Essential emergency training</span><strong>BLS</strong></li>
+              <li><span>Advanced provider preparation</span><strong>ACLS</strong></li>
+              <li><span>Pediatric emergency readiness</span><strong>PALS</strong></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <span>© <span id="year"></span> Nightingale RN Academy. All rights reserved.</span>
+      <span>Single-page static site ready for Cloudflare Pages.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
