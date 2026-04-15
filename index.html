@@ -53,6 +53,31 @@ p {
   text-decoration:none;
 }
 
+.btn-outline {
+  display:inline-block;
+  padding:12px 24px;
+  background:transparent;
+  color:#e7b551;
+  font-weight:600;
+  border-radius:6px;
+  border:2px solid #e7b551;
+  text-decoration:none;
+  white-space:nowrap;
+  font-size:15px;
+}
+
+.btn-outline:hover {
+  background:#e7b551;
+  color:#111;
+}
+
+@media(max-width:700px){
+  .course-row {
+    flex-direction:column;
+    text-align:left !important;
+  }
+}
+
 .section {
   padding:70px 0;
 }
@@ -83,6 +108,87 @@ p {
   }
   h1{font-size:40px;}
 }
+
+/* Modal */
+.modal-backdrop {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.modal-backdrop.open {
+  display:flex;
+}
+.modal {
+  background:#0d2550;
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:20px;
+  padding:36px;
+  width:100%;
+  max-width:520px;
+  position:relative;
+}
+.modal h2 {
+  font-size:24px;
+  margin-bottom:6px;
+}
+.modal-course {
+  color:#e7b551;
+  font-size:15px;
+  margin-bottom:24px;
+}
+.modal label {
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:5px;
+  color:#a0b4d0;
+}
+.modal input, .modal textarea {
+  width:100%;
+  box-sizing:border-box;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:8px;
+  padding:11px 14px;
+  color:#fff;
+  font-size:15px;
+  font-family:Inter,sans-serif;
+  margin-bottom:16px;
+  outline:none;
+}
+.modal input:focus, .modal textarea:focus {
+  border-color:#e7b551;
+}
+.modal textarea {
+  resize:vertical;
+  min-height:80px;
+}
+.modal-close {
+  position:absolute;
+  top:16px;
+  right:20px;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+  opacity:0.6;
+  line-height:1;
+}
+.modal-close:hover { opacity:1; }
+.modal-status {
+  font-size:14px;
+  margin-top:10px;
+  min-height:20px;
+  text-align:center;
+}
+.modal-status.success { color:#5dd98a; }
+.modal-status.error   { color:#ff6b6b; }
 
 </style>
 </head>
@@ -234,6 +340,106 @@ p {
   </div>
 </section>
 
+<!-- SCHEDULE A COURSE -->
+<section class="section">
+  <div class="container">
+
+    <h2 style="text-align:right;letter-spacing:0.08em;text-transform:uppercase;">Schedule a Course With Us</h2>
+
+    <div style="margin-top:30px;border-top:1px solid rgba(255,255,255,0.15);">
+
+      <!-- BLS -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.15);">
+        <div style="flex:1;text-align:right;">
+          <h3 style="font-size:20px;margin-bottom:8px;">BLS – Basic Life Support</h3>
+          <p style="margin:0;font-size:15px;">The AHA's BLS course trains participants to promptly recognize several life-threatening emergencies, give high-quality chest compressions, deliver appropriate ventilations and provide early use of an AED.</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <button class="btn-outline book-btn">Book A Class</button>
+        </div>
+      </div>
+
+      <!-- ACLS -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.15);">
+        <div style="flex:1;text-align:right;">
+          <h3 style="font-size:20px;margin-bottom:8px;">ACLS – Advanced Cardiovascular Life Support</h3>
+          <p style="margin:0;font-size:15px;">The AHA's ACLS course builds on the foundation of lifesaving BLS skills, emphasizing the importance of continuous, high-quality CPR.</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <button class="btn-outline book-btn">Book A Class</button>
+        </div>
+      </div>
+
+      <!-- PALS -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.15);">
+        <div style="flex:1;text-align:right;">
+          <h3 style="font-size:20px;margin-bottom:8px;">PALS – Pediatric Advanced Life Support</h3>
+          <p style="margin:0;font-size:15px;">The AHA's PALS course is designed for healthcare providers who respond to emergencies in infants and children and for personnel in emergency response, emergency medicine, intensive care and critical care units.</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <button class="btn-outline book-btn">Book A Class</button>
+        </div>
+      </div>
+
+      <!-- PEARS -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.15);">
+        <div style="flex:1;text-align:right;">
+          <h3 style="font-size:20px;margin-bottom:8px;">PEARS – Pediatric Emergency Assessment, Recognition and Stabilization</h3>
+          <p style="margin:0;font-size:15px;">The AHA's PEARS course is designed for healthcare providers and others who might encounter pediatric emergency situations during their work, including: Nurse practitioners, Physician assistants, Emergency medical technicians, Respiratory therapists, etc.</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <button class="btn-outline book-btn">Book A Class</button>
+        </div>
+      </div>
+
+      <!-- Heartsaver CPR AED -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.15);">
+        <div style="flex:1;text-align:right;">
+          <h3 style="font-size:20px;margin-bottom:8px;">Heartsaver CPR AED</h3>
+          <p style="margin:0;font-size:15px;">The Heartsaver CPR AED course trains participants to give CPR, and use an automated external defibrillator (AED) in a safe, timely, and effective manner.</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <button class="btn-outline book-btn">Book A Class</button>
+        </div>
+      </div>
+
+      <!-- Heartsaver First Aid CPR AED -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.15);">
+        <div style="flex:1;text-align:right;">
+          <h3 style="font-size:20px;margin-bottom:8px;">Heartsaver First Aid CPR AED</h3>
+          <p style="margin:0;font-size:15px;">The AHA's Heartsaver First Aid CPR AED course trains participants to provide first aid, CPR, and use an automated external defibrillator (AED) in a safe, timely, and effective manner.</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <button class="btn-outline book-btn">Book A Class</button>
+        </div>
+      </div>
+
+      <!-- Heartsaver First Aid -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.15);">
+        <div style="flex:1;text-align:right;">
+          <h3 style="font-size:20px;margin-bottom:8px;">Heartsaver First Aid</h3>
+          <p style="margin:0;font-size:15px;">The Heartsaver First Aid course trains participants first aid basics for the most common first aid emergencies, including how to recognize them, how to call for help, and how to perform life saving skills.</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <button class="btn-outline book-btn">Book A Class</button>
+        </div>
+      </div>
+
+      <!-- Heartsaver Pediatric -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.15);">
+        <div style="flex:1;text-align:right;">
+          <h3 style="font-size:20px;margin-bottom:8px;">Heartsaver Pediatric</h3>
+          <p style="margin:0;font-size:15px;">The Heartsaver Pediatric First Aid CPR AED is designed for anyone involved in childcare who have a duty to respond to illnesses and injuries in children and infants. The course trains participants how to respond to and manage illnesses and injuries in the first few minutes until professional help arrives.</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <button class="btn-outline book-btn">Book A Class</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="section">
   <div class="container">
@@ -269,6 +475,36 @@ p {
   </div>
 </section>
 
+<!-- BOOKING MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <h2>Book A Class</h2>
+    <p class="modal-course" id="modalCourse"></p>
+
+    <form id="bookingForm" novalidate>
+      <input type="hidden" id="fieldCourse" name="course" />
+
+      <label for="fieldName">Full Name *</label>
+      <input type="text" id="fieldName" name="name" placeholder="Jane Smith" required />
+
+      <label for="fieldEmail">Email Address *</label>
+      <input type="email" id="fieldEmail" name="email" placeholder="jane@example.com" required />
+
+      <label for="fieldPhone">Phone Number *</label>
+      <input type="tel" id="fieldPhone" name="phone" placeholder="(555) 000-0000" required />
+
+      <label for="fieldMessage">Message (optional)</label>
+      <textarea id="fieldMessage" name="message" placeholder="Any questions or preferred dates…"></textarea>
+
+      <button type="submit" class="btn" style="width:100%;text-align:center;border:none;cursor:pointer;font-size:16px;">
+        Send Inquiry
+      </button>
+      <div class="modal-status" id="modalStatus"></div>
+    </form>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <section class="section">
   <div class="container">
@@ -278,5 +514,80 @@ p {
   </div>
 </section>
 
+<script>
+  // Replace this with your deployed Worker URL after running: cd worker && npm run deploy
+  const WORKER_URL = "https://nightingale-form.YOUR_SUBDOMAIN.workers.dev";
+
+  const backdrop = document.getElementById("modalBackdrop");
+  const courseLabel = document.getElementById("modalCourse");
+  const courseField = document.getElementById("fieldCourse");
+  const form = document.getElementById("bookingForm");
+  const status = document.getElementById("modalStatus");
+
+  function openModal(courseName) {
+    courseLabel.textContent = courseName;
+    courseField.value = courseName;
+    status.textContent = "";
+    status.className = "modal-status";
+    form.reset();
+    courseField.value = courseName;
+    backdrop.classList.add("open");
+    document.getElementById("fieldName").focus();
+  }
+
+  function closeModal() {
+    backdrop.classList.remove("open");
+  }
+
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  backdrop.addEventListener("click", (e) => { if (e.target === backdrop) closeModal(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+  document.querySelectorAll(".book-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const h3 = btn.parentElement.parentElement.querySelector("h3");
+      openModal(h3 ? h3.textContent.trim() : "Course");
+    });
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector("[type=submit]");
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    status.textContent = "";
+    status.className = "modal-status";
+
+    const data = {
+      course:  document.getElementById("fieldCourse").value,
+      name:    document.getElementById("fieldName").value.trim(),
+      email:   document.getElementById("fieldEmail").value.trim(),
+      phone:   document.getElementById("fieldPhone").value.trim(),
+      message: document.getElementById("fieldMessage").value.trim(),
+    };
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (res.ok && json.success) {
+        status.textContent = "Inquiry sent! We'll be in touch soon.";
+        status.className = "modal-status success";
+        form.reset();
+      } else {
+        throw new Error(json.error || "Unknown error");
+      }
+    } catch (err) {
+      status.textContent = "Something went wrong. Please call us directly at (281) 323-9428.";
+      status.className = "modal-status error";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Send Inquiry";
+    }
+  });
+</script>
 </body>
 </html>
