@@ -5,4 +5,4 @@ compatibility_flags = ["nodejs_compat"]
 
 [[send_email]]
 name = "SEND_EMAIL"
-destination_address = "nightingale.rn.academy@gmail.com"
+destination_address = "ron93vandanal@gmail.com"

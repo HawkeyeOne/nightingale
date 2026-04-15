@@ -32,7 +32,7 @@ export default {
 
     const msg = createMimeMessage();
     msg.setSender({ name: "Nightingale RN Academy Website", addr: "noreply@nightingalernacademy.com" });
-    msg.setRecipient("nightingale.rn.academy@gmail.com");
+    msg.setRecipient("ron93vandanal@gmail.com");
     msg.setSubject(`Course Inquiry: ${course}`);
     msg.addMessage({
       contentType: "text/html",
@@ -51,7 +51,7 @@ export default {
     try {
       const emailMessage = new EmailMessage(
         "noreply@nightingalernacademy.com",
-        "nightingale.rn.academy@gmail.com",
+        "ron93vandanal@gmail.com",
         msg.asRaw()
       );
       await env.SEND_EMAIL.send(emailMessage);
