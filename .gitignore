@@ -1,2 +1,5 @@
 # Local AI-tool worktrees are machine-specific and must not be committed.
 .claude/worktrees/
+
+# macOS Finder metadata
+.DS_Store

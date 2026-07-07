@@ -19,7 +19,7 @@
         radial-gradient(circle at 85% 5%, rgba(231,181,81,0.16), transparent 30rem),
         linear-gradient(180deg,#061a3a,#0b2a5c);
     }
-    .page { width:min(100% - 32px, 900px); margin:0 auto; padding:28px 0 56px; }
+    .page { width:min(100% - 40px, 940px); margin:0 auto; padding:28px 0 64px; }
     .back {
       display:inline-flex;
       align-items:center;
@@ -39,21 +39,38 @@
       line-height:1;
     }
     header p { margin:0; color:#cfd8ea; line-height:1.7; font-size:17px; }
+    .form-shell { max-width:760px; margin:0 auto; }
+    .form-meta {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px 18px;
+      flex-wrap:wrap;
+      margin:0 0 14px;
+      color:#cfd8ea;
+      font-size:13px;
+    }
+    .form-meta span { display:inline-flex; align-items:center; gap:7px; }
+    .form-meta span::before { content:"✓"; color:#e7b551; font-weight:800; }
     .form-card {
       overflow:hidden;
       background:#fff;
       border:1px solid rgba(255,255,255,0.18);
-      border-radius:24px;
+      border-radius:28px;
+      padding:16px;
       box-shadow:0 24px 70px rgba(0,0,0,0.28);
     }
-    iframe { display:block; width:100%; min-height:620px; border:0; }
+    iframe { display:block; width:100%; min-height:620px; border:0; border-radius:16px; background:#fff; }
     .help { margin:20px 0 0; color:#cfd8ea; text-align:center; font-size:14px; line-height:1.6; }
     .help a { color:#e7b551; }
     @media (max-width:600px) {
-      .page { width:min(100% - 20px, 900px); padding-top:12px; }
+      .page { width:min(100% - 30px, 940px); padding-top:12px; }
       header { margin:26px 10px 22px; }
       header p { font-size:15px; }
-      .form-card { border-radius:16px; }
+      .logo { width:88px; margin-bottom:14px; }
+      .form-meta { gap:6px 12px; margin-bottom:12px; font-size:12px; }
+      .form-card { border-radius:20px; padding:10px; }
+      iframe { border-radius:12px; }
       iframe { min-height:680px; }
     }
   </style>
@@ -68,18 +85,25 @@
       <p>Tell us what training you need and a little about your preferred schedule. We’ll follow up with availability and next steps.</p>
     </header>
 
-    <section class="form-card" aria-label="Course scheduling form">
-      <iframe
-        data-tally-src="https://tally.so/embed/ja20bR?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-        loading="lazy"
-        width="100%"
-        height="620"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-        title="Schedule a course with Nightingale RN Academy">
-      </iframe>
-    </section>
+    <div class="form-shell">
+      <div class="form-meta" aria-label="Form information">
+        <span>About 1 minute</span>
+        <span>No payment required</span>
+        <span>We’ll follow up personally</span>
+      </div>
+      <section class="form-card" aria-label="Course scheduling form">
+        <iframe
+          data-tally-src="https://tally.so/embed/ja20bR?hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          loading="lazy"
+          width="100%"
+          height="620"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Schedule a course with Nightingale RN Academy">
+        </iframe>
+      </section>
+    </div>
 
     <p class="help">Having trouble with the form? Call us at <a href="tel:17132817770">713-281-7770</a>.</p>
   </main>
