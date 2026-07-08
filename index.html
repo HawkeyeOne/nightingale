@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Nightingale RN Academy | BLS, ACLS & PALS Training</title>
+<title>Nightingale RN Academy | NCLEX Prep, BLS, ACLS & PALS</title>
 
-<meta name="description" content="BLS, ACLS, and PALS courses in Missouri City, Texas, serving healthcare students and professionals throughout the Greater Houston area." />
+<meta name="description" content="NCLEX-RN preparation, BLS, ACLS, and PALS courses in Missouri City, Texas, serving learners throughout the Greater Houston area." />
 <link rel="canonical" href="https://www.nightingalernacademy.com/" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Nightingale RN Academy | BLS, ACLS & PALS Training" />
+<meta property="og:title" content="Nightingale RN Academy | NCLEX Prep, BLS, ACLS & PALS" />
 <meta property="og:description" content="Practical BLS, ACLS, and PALS training in Missouri City for healthcare learners across Greater Houston." />
 <meta property="og:url" content="https://www.nightingalernacademy.com/" />
 <meta property="og:image" content="https://www.nightingalernacademy.com/assets/bls-training.webp" />
@@ -150,8 +150,12 @@ p {
   grid-template-columns:repeat(3,1fr);
 }
 
+.grid-courses {
+  grid-template-columns:repeat(2,1fr);
+}
+
 @media(max-width:900px){
-  .grid-2,.grid-3{
+  .grid-2,.grid-3,.grid-courses{
     grid-template-columns:1fr;
   }
   h1{font-size:40px;}
@@ -194,7 +198,7 @@ nav {
 .step-card h3,.step-card p { grid-column:2; }
 .step-number { grid-row:1/3; display:grid; place-items:center; width:48px; height:48px; border-radius:15px; background:#e7b551; color:#111; font-weight:800; }
 .schedule-heading { text-align:left !important; letter-spacing:normal !important; text-transform:none !important; }
-.schedule-list { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:30px !important; border:0 !important; }
+.schedule-list { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:30px !important; border:0 !important; }
 .schedule-list .course-row { display:flex !important; flex-direction:column; align-items:flex-start !important; padding:26px !important; gap:18px !important; border:1px solid rgba(255,255,255,.11) !important; border-radius:20px; background:rgba(255,255,255,.06); }
 .schedule-list .course-copy { text-align:left !important; }
 .schedule-list .course-row > div:last-child { margin-top:auto; width:100%; }
@@ -208,7 +212,7 @@ nav {
   .nav-brand span { display:none; }
   .nav-brand img { width:32px; height:40px; }
   .nav-inner > a:not(.nav-brand) { font-size:13px; }
-  .nav-area { display:none; }
+  .nav-area,.nav-extra { display:none; }
   .nav-inner .btn-outline { padding:8px 10px; }
   .hero-section { padding:54px 0 62px; }
   .hero-panel { padding:28px 22px; border-radius:24px; }
@@ -225,6 +229,7 @@ nav {
       "@type": "Organization",
       "@id": "https://www.nightingalernacademy.com/#organization",
       "name": "Nightingale RN Academy",
+      "legalName": "Nightingale RN Academy LLC",
       "url": "https://www.nightingalernacademy.com/",
       "logo": "https://www.nightingalernacademy.com/assets/nightingale-logo.png",
       "telephone": "+1-713-281-7770",
@@ -246,7 +251,8 @@ nav {
       "itemListElement": [
         {"@type":"ListItem","position":1,"url":"https://www.nightingalernacademy.com/bls-course.html"},
         {"@type":"ListItem","position":2,"url":"https://www.nightingalernacademy.com/acls-course.html"},
-        {"@type":"ListItem","position":3,"url":"https://www.nightingalernacademy.com/pals-course.html"}
+        {"@type":"ListItem","position":3,"url":"https://www.nightingalernacademy.com/pals-course.html"},
+        {"@type":"ListItem","position":4,"url":"https://www.nightingalernacademy.com/nclex-prep.html"}
       ]
     }
   ]
@@ -263,6 +269,7 @@ nav {
     <a href="bls-course.html" style="color:#fff;text-decoration:none;">BLS</a>
     <a href="acls-course.html" style="color:#fff;text-decoration:none;">ACLS</a>
     <a href="pals-course.html" style="color:#fff;text-decoration:none;">PALS</a>
+    <a class="nav-extra" href="nclex-prep.html" style="color:#fff;text-decoration:none;">NCLEX Prep</a>
     <a class="nav-area" href="houston-area.html" style="color:#fff;text-decoration:none;">Houston Area</a>
     <a class="nav-area" href="nursing-career.html" style="color:#fff;text-decoration:none;">Nursing Career</a>
     <a href="faq.html" style="color:#fff;text-decoration:none;">FAQ</a>
@@ -285,7 +292,8 @@ nav {
     </div>
 
     <p>
-      Nightingale RN Academy provides BLS, ACLS, and PALS training for healthcare students and professionals.
+      Nightingale RN Academy provides NCLEX-RN preparation plus BLS, ACLS, and PALS training for nursing graduates,
+      healthcare students, and professionals.
       Our courses build practical lifesaving skills, strengthen emergency response knowledge, and help participants
       meet essential certification requirements with confidence. Based in Missouri City, Texas, we serve learners
       throughout the Greater Houston area.
@@ -303,9 +311,9 @@ nav {
   <div class="container">
 
     <div class="section-heading"><span class="section-kicker">Our courses</span><h2>Programs Offered</h2>
-      <p>Choose the life support course that fits your training or certification needs.</p></div>
+      <p>Choose NCLEX-RN preparation or the life support course that fits your training and certification needs.</p></div>
 
-    <div class="grid grid-3">
+    <div class="grid grid-courses">
 
       <div class="card course-card">
         <img src="assets/bls-training.webp" alt="Healthcare students practicing BLS chest compressions on a training manikin" width="1200" height="800" loading="lazy" />
@@ -336,6 +344,17 @@ nav {
           <p>
             Prepare to recognize and respond to respiratory emergencies, shock, and cardiac arrest
             in infants and children.
+          </p>
+        </div>
+      </div>
+
+      <div class="card course-card">
+        <img src="assets/nclex-prep.jpg" alt="Nursing graduates studying together for the NCLEX-RN with an instructor" width="1200" height="800" loading="lazy" />
+        <div class="course-card-copy">
+          <h3><a href="nclex-prep.html" style="color:#fff;">NCLEX-RN Prep Course</a></h3>
+          <p>
+            Strengthen nursing-content review, clinical judgment, question analysis,
+            and test-taking strategy for the NCLEX-RN.
           </p>
         </div>
       </div>
@@ -396,7 +415,7 @@ nav {
   <div class="container">
     <div class="section-heading"><span class="section-kicker">Local healthcare training</span><h2>Serving Missouri City and Greater Houston</h2><p>Nightingale RN Academy is based in Missouri City and welcomes healthcare students and professionals from communities across the Greater Houston area.</p></div>
     <div class="grid grid-3">
-      <div class="card"><h3>Convenient local option</h3><p>Find BLS, ACLS, and PALS training close to Missouri City, Sugar Land, Stafford, and southwest Houston.</p></div>
+      <div class="card"><h3>Convenient local option</h3><p>Find NCLEX preparation plus BLS, ACLS, and PALS training close to Missouri City, Sugar Land, Stafford, and southwest Houston.</p></div>
       <div class="card"><h3>Built for healthcare learners</h3><p>Our courses support people preparing for school, clinical placements, employment requirements, and credential renewal.</p></div>
       <div class="card"><h3>Clear scheduling support</h3><p>Tell us the course you need and your preferred timing. We will follow up with current availability and preparation details.</p></div>
     </div>
@@ -422,7 +441,7 @@ nav {
       <div class="card step-card"><span class="step-number">2</span>
         <h3>Step 2: Choose Program</h3>
         <p>
-          Select BLS, ACLS, or PALS based on your training and certification needs.
+          Select NCLEX Prep, BLS, ACLS, or PALS based on your learning and certification needs.
         </p>
       </div>
 
@@ -487,6 +506,17 @@ nav {
         </div>
       </div>
 
+      <!-- NCLEX-RN PREP -->
+      <div class="course-row" style="display:flex;align-items:center;justify-content:space-between;gap:30px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,0.15);">
+        <div class="course-copy" style="flex:1;text-align:right;">
+          <h3 style="font-size:20px;margin-bottom:8px;">NCLEX-RN Prep Course</h3>
+          <p style="margin:0;font-size:15px;">A focused preparation course for nursing graduates who want structured content review, clinical judgment practice, question analysis, and test-taking strategy before the NCLEX-RN.</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <a class="btn-outline" href="schedule.html">Book A Class</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -530,7 +560,7 @@ nav {
 <section class="section">
   <div class="container">
     <p style="text-align:center;">
-      © 2026 Nightingale RN Academy. All rights reserved.
+      © 2026 Nightingale RN Academy LLC. All rights reserved.
     </p>
     <p style="text-align:center;"><a href="faq.html" style="color:#e7b551;">Frequently Asked Questions</a></p>
   </div>
