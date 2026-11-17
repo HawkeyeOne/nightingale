@@ -4,16 +4,22 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Nightingale RN Academy | NCLEX Prep, BLS, ACLS & PALS</title>
+<title>NCLEX Prep &amp; BLS, ACLS, PALS | Missouri City, TX</title>
 
-<meta name="description" content="NCLEX-RN preparation, BLS, ACLS, and PALS courses in Missouri City, Texas, serving learners throughout the Greater Houston area." />
+<meta name="description" content="NCLEX-RN prep, BLS, ACLS, and PALS training in Missouri City, TX for nursing students and healthcare professionals across Greater Houston." />
+<meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://www.nightingalernacademy.com/" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Nightingale RN Academy | NCLEX Prep, BLS, ACLS & PALS" />
-<meta property="og:description" content="Practical BLS, ACLS, and PALS training in Missouri City for healthcare learners across Greater Houston." />
+<meta property="og:title" content="NCLEX Prep &amp; Life Support Training | Nightingale RN Academy" />
+<meta property="og:description" content="NCLEX-RN prep plus BLS, ACLS, and PALS training in Missouri City for nursing students, graduates, and healthcare professionals across Greater Houston." />
 <meta property="og:url" content="https://www.nightingalernacademy.com/" />
 <meta property="og:image" content="https://www.nightingalernacademy.com/assets/bls-training.webp" />
+<meta property="og:image:alt" content="Healthcare students practicing BLS training in Missouri City" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="NCLEX Prep &amp; Life Support Training | Nightingale RN Academy" />
+<meta name="twitter:description" content="NCLEX-RN prep, BLS, ACLS, and PALS training in Missouri City and Greater Houston." />
+<meta name="twitter:image" content="https://www.nightingalernacademy.com/assets/bls-training.webp" />
+<meta name="theme-color" content="#061a3a" />
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -91,6 +97,68 @@ p {
 .btn-outline:hover {
   background:#e7b551;
   color:#111;
+}
+
+.btn:focus-visible,
+.btn-outline:focus-visible,
+a:focus-visible {
+  outline:3px solid #fff;
+  outline-offset:3px;
+}
+
+.hero-actions {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+
+.hero-actions .btn {
+  margin-top:0;
+}
+
+.hero-note {
+  margin:20px 0 0;
+  color:#cfd8ea;
+  font-size:14px;
+}
+
+.course-card {
+  display:flex;
+  flex-direction:column;
+}
+
+.course-card-copy {
+  display:flex;
+  flex:1;
+  flex-direction:column;
+}
+
+.course-link-row {
+  margin:18px 0 0;
+  margin-top:auto;
+}
+
+.course-link {
+  color:#e7b551;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.course-link:hover {
+  text-decoration:underline;
+}
+
+.cta-band {
+  padding:34px;
+  border:1px solid rgba(231,181,81,.3);
+  border-radius:24px;
+  background:linear-gradient(135deg,rgba(231,181,81,.14),rgba(255,255,255,.05));
+}
+
+.cta-band p {
+  max-width:680px;
 }
 
 @media(max-width:700px){
@@ -226,14 +294,21 @@ nav {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": "EducationalOrganization",
       "@id": "https://www.nightingalernacademy.com/#organization",
       "name": "Nightingale RN Academy",
+      "description": "NCLEX-RN preparation and life support training for healthcare learners in Missouri City and Greater Houston.",
       "legalName": "Nightingale RN Academy LLC",
       "url": "https://www.nightingalernacademy.com/",
       "logo": "https://www.nightingalernacademy.com/assets/nightingale-logo.png",
       "telephone": "+1-713-281-7770",
       "email": "nightingale.rn.academy@gmail.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-713-281-7770",
+        "contactType": "customer service",
+        "email": "nightingale.rn.academy@gmail.com"
+      },
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Missouri City",
@@ -247,7 +322,7 @@ nav {
     },
     {
       "@type": "ItemList",
-      "name": "Life Support Courses",
+      "name": "NCLEX and Life Support Courses",
       "itemListElement": [
         {"@type":"ListItem","position":1,"url":"https://www.nightingalernacademy.com/bls-course.html"},
         {"@type":"ListItem","position":2,"url":"https://www.nightingalernacademy.com/acls-course.html"},
@@ -286,7 +361,7 @@ nav {
     <div class="hero-brand">
       <img class="site-logo" src="assets/nightingale-logo.png" alt="Nightingale RN Academy logo" width="857" height="1078" />
       <div>
-        <h1>Nightingale RN Academy</h1>
+        <h1>NCLEX Prep &amp; Life Support Training in Missouri City, TX</h1>
         <h3 style="color:#e7b551;">Prepare. Pass. Succeed.</h3>
       </div>
     </div>
@@ -299,7 +374,11 @@ nav {
       throughout the Greater Houston area.
     </p>
 
-    <a href="tel:17132817770" class="btn">Call to Enroll</a>
+    <div class="hero-actions">
+      <a href="schedule.html" class="btn">Check course availability</a>
+      <a href="tel:17132817770" class="btn-outline">Call 713-281-7770</a>
+    </div>
+    <p class="hero-note">Missouri City, Texas · Serving nursing students and healthcare professionals across Greater Houston.</p>
 
     </div>
 
@@ -323,6 +402,7 @@ nav {
             Learn to recognize life-threatening emergencies, provide high-quality CPR,
             deliver appropriate ventilations, and use an AED.
           </p>
+          <p class="course-link-row"><a class="course-link" href="bls-course.html">View BLS course details →</a></p>
         </div>
       </div>
 
@@ -334,6 +414,7 @@ nav {
             Build on foundational BLS skills with advanced training for cardiovascular emergencies
             and effective resuscitation team response.
           </p>
+          <p class="course-link-row"><a class="course-link" href="acls-course.html">View ACLS course details →</a></p>
         </div>
       </div>
 
@@ -345,6 +426,7 @@ nav {
             Prepare to recognize and respond to respiratory emergencies, shock, and cardiac arrest
             in infants and children.
           </p>
+          <p class="course-link-row"><a class="course-link" href="pals-course.html">View PALS course details →</a></p>
         </div>
       </div>
 
@@ -356,6 +438,7 @@ nav {
             Strengthen nursing-content review, clinical judgment, question analysis,
             and test-taking strategy for the NCLEX-RN.
           </p>
+          <p class="course-link-row"><a class="course-link" href="nclex-prep.html">View NCLEX Prep details →</a></p>
         </div>
       </div>
 
@@ -521,6 +604,21 @@ nav {
   </div>
 </section>
 
+<!-- CONVERSION CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <span class="section-kicker">Ready to get started?</span>
+      <h2>Tell us what training you need</h2>
+      <p>Use the short scheduling form to request course availability. Share your course and preferred timing, and we’ll follow up with the next steps.</p>
+      <div class="hero-actions">
+        <a class="btn" href="schedule.html">Request course availability</a>
+        <a class="btn-outline" href="faq.html">Read course FAQs</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="section section-soft">
   <div class="container">
@@ -548,7 +646,10 @@ nav {
           guide you toward the right program.
         </p>
 
-        <a href="tel:17132817770" class="btn">Call Now</a>
+        <div class="hero-actions">
+          <a href="schedule.html" class="btn">Request availability</a>
+          <a href="tel:17132817770" class="btn-outline">Call now</a>
+        </div>
       </div>
 
     </div>
@@ -562,7 +663,7 @@ nav {
     <p style="text-align:center;">
       © 2026 Nightingale RN Academy LLC. All rights reserved.
     </p>
-    <p style="text-align:center;"><a href="faq.html" style="color:#e7b551;">Frequently Asked Questions</a></p>
+    <p style="text-align:center;"><a href="faq.html" style="color:#e7b551;">Frequently Asked Questions</a> · <a href="schedule.html" style="color:#e7b551;">Schedule a course</a></p>
   </div>
 </section>
 
