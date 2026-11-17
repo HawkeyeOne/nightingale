@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Generate a branded daily social post and optionally send it through WhatsApp.
 
-The generator is dependency-free. With OPENAI_API_KEY configured it asks the
-OpenAI chat-completions endpoint for a fresh post; without a key it uses the
-curated, brand-safe fallback library so a post can still be produced.
+The default browser workflow uses chatgpt_browser_content.py with Playwright and
+the saved Nightingale ChatGPT session. An OpenAI chat-completions API mode and
+a curated, brand-safe fallback are also available.
 Sending is opt-in and requires WhatsApp Cloud API credentials.
 """
 
@@ -336,6 +336,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--date", help="Post date in YYYY-MM-DD format; defaults to today")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    parser.add_argument("--profile", type=Path, default=Path(os.environ.get("BROWSER_PROFILE_DIR", ROOT / ".browser-profile")))
+    parser.add_argument("--chatgpt-url", default=os.environ.get("CHATGPT_URL", "https://chatgpt.com/c/6afbe414-b624-83ea-8f24-7480abe6dc21"))
+    parser.add_argument("--chatgpt-browser", action="store_true", help="Generate through the signed-in ChatGPT website using Playwright")
+    parser.add_argument("--timeout", type=int, default=180, help="ChatGPT browser response timeout in seconds")
     parser.add_argument("--force", action="store_true", help="Regenerate even if this date already has a post")
     parser.add_argument("--send", action="store_true", help="Send the generated text through WhatsApp Cloud API")
     parser.add_argument("--to", default=os.environ.get("WHATSAPP_TO", "+12813239428"), help="US recipient number")
@@ -349,7 +353,18 @@ def main() -> int:
         post = json.loads(post_file.read_text(encoding="utf-8"))
         print(f"Using existing post for {post_date.isoformat()}; pass --force to regenerate.", file=sys.stderr)
     else:
-        post = build_post(post_date, args.output_dir)
+        if args.chatgpt_browser:
+            from chatgpt_browser_content import generate_chatgpt_post
+
+            post = generate_chatgpt_post(
+                post_date,
+                args.output_dir,
+                args.profile,
+                chatgpt_url=args.chatgpt_url,
+                timeout_seconds=args.timeout,
+            )
+        else:
+            post = build_post(post_date, args.output_dir)
     post_file.write_text(json.dumps(post, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     (stem.with_suffix(".md")).write_text(render_markdown(post), encoding="utf-8")
     (stem.with_suffix(".html")).write_text(render_html(post), encoding="utf-8")

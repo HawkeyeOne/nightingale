@@ -22,6 +22,7 @@
 - `schedule.html` embeds the Tally scheduling form.
 - `google-apps-script/LeadNotifier.gs` polls a connected Google Sheet and emails new leads to the public owner email.
 - `social_content.py` generates date-specific caption/song/hashtag content and brand-safe HTML/JSON/Markdown output.
+- `chatgpt_browser_content.py` uses Playwright with the Nightingale ChatGPT session `https://chatgpt.com/c/6afbe414-b624-83ea-8f24-7480abe6dc21`.
 - `render_social_post.py` renders the HTML card with the website logo to a square PNG.
 - `whatsapp_browser_send.py` can send the generated image and caption through a signed-in WhatsApp Web browser profile; preview is the default and `--send` is explicit.
 - `run_daily_social_post.sh` chains generation, rendering, and preview/send for daily use; `SEND=1` is required for delivery.

@@ -10,7 +10,11 @@ PROFILE="${BROWSER_PROFILE_DIR:-$ROOT/.browser-profile}"
 EXPECTED_CONTACT="${WHATSAPP_EXPECTED_CONTACT:-}"
 
 cd "$ROOT"
-"$PYTHON" social_content.py --date "$POST_DATE"
+GEN_ARGS=(--date "$POST_DATE")
+if [[ "${CHATGPT_BROWSER:-1}" == "1" ]]; then
+  GEN_ARGS+=(--chatgpt-browser --profile "$PROFILE")
+fi
+"$PYTHON" social_content.py "${GEN_ARGS[@]}"
 "$PYTHON" render_social_post.py --date "$POST_DATE"
 
 SEND_ARGS=(
