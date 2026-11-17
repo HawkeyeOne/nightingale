@@ -15,10 +15,17 @@ if [[ "${CHATGPT_BROWSER:-1}" == "1" ]]; then
   GEN_ARGS+=(--chatgpt-browser --profile "$PROFILE")
 fi
 "$PYTHON" social_content.py "${GEN_ARGS[@]}"
-"$PYTHON" render_social_post.py --date "$POST_DATE"
+if [[ "${CHATGPT_BROWSER:-1}" == "1" ]]; then
+  "$PYTHON" chatgpt_browser_image.py --date "$POST_DATE" --profile "$PROFILE"
+  IMAGE_PATH="$ROOT/social-posts/${POST_DATE}-chatgpt.png"
+else
+  "$PYTHON" render_social_post.py --date "$POST_DATE"
+  IMAGE_PATH="$ROOT/social-posts/${POST_DATE}.png"
+fi
 
 SEND_ARGS=(
   --date "$POST_DATE"
+  --image "$IMAGE_PATH"
   --to "$RECIPIENT"
   --profile "$PROFILE"
 )

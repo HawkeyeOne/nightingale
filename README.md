@@ -23,7 +23,8 @@ Static marketing site for **Nightingale RN Academy LLC**, based in Missouri City
 - `google-apps-script/LeadNotifier.gs` — optional Google Sheets lead-notification automation.
 - `social_content.py` — daily branded post generator with ChatGPT-browser, API, and safe fallback modes.
 - `chatgpt_browser_content.py` — uses Playwright and a signed-in ChatGPT website session to generate fresh JSON content.
-- `render_social_post.py` — renders the branded HTML card to a 1080×1080 PNG using the real logo.
+- `chatgpt_browser_image.py` — asks that same ChatGPT session to generate and download the actual image asset.
+- `render_social_post.py` — fallback renderer for a branded HTML card when ChatGPT image generation is disabled.
 - `whatsapp_browser_send.py` — preview-first WhatsApp Web sender for the generated image and caption.
 - `run_daily_social_post.sh` — daily generate/render/send wrapper; sending requires explicit `SEND=1`.
 - `MEMORY.md` — maintained project context, business facts, guardrails, and next-step priorities.
@@ -57,8 +58,8 @@ Generate a date-specific post, render its branded card, and preview the WhatsApp
 
 ```bash
 python3 social_content.py --date 2026-11-17 --chatgpt-browser --profile /path/to/signed-in-profile --force
-python3 render_social_post.py --date 2026-11-17
-python3 whatsapp_browser_send.py --date 2026-11-17 --to +12813239428 --expected-contact "Contact Name"
+python3 chatgpt_browser_image.py --date 2026-11-17 --profile /path/to/signed-in-profile
+python3 whatsapp_browser_send.py --date 2026-11-17 --image social-posts/2026-11-17-chatgpt.png --to +12813239428 --expected-contact "Contact Name"
 ```
 
 For a daily runner (ChatGPT website generation is the default; still preview-only unless `SEND=1`):
@@ -67,7 +68,7 @@ For a daily runner (ChatGPT website generation is the default; still preview-onl
 CHATGPT_BROWSER=1 WHATSAPP_EXPECTED_CONTACT="Contact Name" BROWSER_PROFILE_DIR=/path/to/signed-in-profile ./run_daily_social_post.sh
 ```
 
-The preferred generator uses `--chatgpt-browser`, Playwright, and a signed-in ChatGPT website profile. The default Nightingale session is `https://chatgpt.com/c/6afbe414-b624-83ea-8f24-7480abe6dc21`; override it with `CHATGPT_URL` if needed. The API mode uses `OPENAI_API_KEY`/`OPENAI_MODEL`; if neither is available, the brand-safe fallback topics are used. Rendering and browser sending require Playwright in the Python environment. It writes JSON, Markdown, HTML, and PNG files under `social-posts/`; rerunning a date reuses the existing post unless `--force` is passed. The HTML card uses the website logo and navy/blue/gold palette. The song is a suggestion only; verify commercial audio availability and rights before posting.
+The preferred workflow uses `--chatgpt-browser`, `chatgpt_browser_image.py`, Playwright, and a signed-in ChatGPT website profile. The default Nightingale session is `https://chatgpt.com/c/6afbe414-b624-83ea-8f24-7480abe6dc21`; override it with `CHATGPT_URL` if needed. This downloads a real ChatGPT-generated image, not a sticker and not only an HTML screenshot. The API mode uses `OPENAI_API_KEY`/`OPENAI_MODEL`; if neither is available, the brand-safe fallback topics are used. Rendering and browser sending require Playwright in the Python environment. It writes JSON, Markdown, HTML, and PNG files under `social-posts/`; rerunning a date reuses the existing post unless `--force` is passed. The HTML card uses the website logo and navy/blue/gold palette. The song is a suggestion only; verify commercial audio availability and rights before posting.
 
 For an actual browser send, WhatsApp Web must already be signed in to a Chrome profile. Use `--send` only after checking the preview and recipient:
 

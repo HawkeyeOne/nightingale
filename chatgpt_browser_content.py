@@ -35,11 +35,13 @@ def _assistant_texts(page) -> list[str]:
     for selector in ASSISTANT_SELECTORS:
         locator = page.locator(selector)
         if locator.count():
-            values = []
-            for index in range(locator.count()):
-                text = locator.nth(index).inner_text().strip()
-                if text:
-                    values.append(text)
+            try:
+                values = locator.evaluate_all(
+                    "els => els.map(e => e.innerText || e.textContent || '')"
+                )
+            except Exception:
+                continue
+            values = [str(text).strip() for text in values if str(text).strip()]
             if values:
                 return values
     return []

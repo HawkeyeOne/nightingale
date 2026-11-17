@@ -42,7 +42,7 @@ def normalize_search_number(value: str) -> str:
     raise ValueError("Recipient must be a US 10- or 11-digit number.")
 
 
-def send_post(profile: Path, recipient: str, image: Path, message: str, expected_contact: str | None) -> str:
+def send_post(profile: Path, recipient: str, image: Path, message: str, expected_contact: str | None, allow_duplicate: bool = False) -> str:
     try:
         from playwright.sync_api import sync_playwright
     except ImportError as exc:
@@ -91,7 +91,7 @@ def send_post(profile: Path, recipient: str, image: Path, message: str, expected
             contact = header.inner_text().replace("\n", " | ")
             if expected_contact and expected_contact.casefold() not in contact.casefold():
                 raise RuntimeError(f"Opened contact does not match --expected-contact: {contact}")
-            if message.splitlines()[0] in page.locator("body").inner_text():
+            if not allow_duplicate and message.splitlines()[0] in page.locator("body").inner_text():
                 raise RuntimeError("This post headline is already present in the chat; refusing a duplicate send.")
 
             attach = visible(page.locator('footer button[aria-label="Attach"], button[aria-label="Attach"]'))
@@ -102,32 +102,44 @@ def send_post(profile: Path, recipient: str, image: Path, message: str, expected
                 '[role="menuitem"][aria-label="Photos & videos"], [aria-label="Photos & videos"]'
             ).first
             photos.wait_for(state="visible", timeout=10_000)
-            photos.click(force=True)
-            file_input = page.locator('input[type="file"][accept*="image"]').first
-            file_input.wait_for(state="attached", timeout=10_000)
-            file_input.set_input_files(str(image))
+            # Use the file chooser opened by Photos & videos. Selecting a
+            # hidden input directly can hit WhatsApp's image-only New sticker
+            # input and silently turn the upload into a sticker.
+            failures_before = page.locator('[data-testid="fail-container"]').count()
+            with page.expect_file_chooser(timeout=10_000) as chooser_info:
+                photos.click(force=True)
+            chooser_info.value.set_files(str(image))
             page.wait_for_timeout(2_000)
 
-            caption = visible(page.locator(
-                '[data-testid="media-caption-input"], footer [contenteditable="true"], '
-                '[role="textbox"][aria-label*="Type a message" i]'
-            ))
+            # The normal footer composer is also present while media is
+            # loading. WhatsApp's media caption field keeps this same test id,
+            # so use it rather than a generic textbox that can create a text
+            # draft alongside the upload.
+            caption = visible(page.locator('[data-testid="conversation-compose-box-input"]'))
             if caption is None:
                 raise RuntimeError("WhatsApp media caption field was not found.")
             caption.click(force=True)
-            caption.fill(message)
+            for index, line in enumerate(message.split("\\n")):
+                page.keyboard.insert_text(line)
+                if index < len(message.split("\\n")) - 1:
+                    page.keyboard.down("Shift")
+                    page.keyboard.press("Enter")
+                    page.keyboard.up("Shift")
             page.wait_for_timeout(500)
 
+            # A media upload uses an aria label such as "Send 1 selected".
+            # The generic Send button belongs to the ordinary text composer
+            # and can turn the upload into a sticker/draft.
             send = visible(page.locator(
-                'button[aria-label="Send"], [data-testid="send"], span[data-icon="send"]'
+                '[role="button"][aria-label^="Send " i], button[aria-label^="Send " i]'
             ))
             if send is None:
-                raise RuntimeError("WhatsApp send button was not found.")
+                raise RuntimeError("WhatsApp media Send control was not found.")
             send.click(force=True)
-            page.wait_for_timeout(4_000)
-            failure = page.locator('[data-testid="fail-container"]')
-            if failure.count() and failure.last.is_visible():
-                raise RuntimeError("WhatsApp reported a send failure: " + failure.last.inner_text())
+            page.wait_for_timeout(15_000)
+            failures_after = page.locator('[data-testid="fail-container"]').count()
+            if failures_after > failures_before:
+                raise RuntimeError("WhatsApp reported an image send failure.")
             if message.splitlines()[0] not in page.locator("body").inner_text():
                 raise RuntimeError("Send completed without the post headline appearing in the chat.")
             return f"{target_text} -> {contact}"
@@ -143,7 +155,9 @@ def main() -> int:
     parser.add_argument("--expected-contact", help="Expected WhatsApp contact name; recommended for safety")
     parser.add_argument("--profile", type=Path, default=DEFAULT_PROFILE)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    parser.add_argument("--image", type=Path, help="Image to send; defaults to the date's rendered card")
     parser.add_argument("--send", action="store_true", help="Actually send through WhatsApp Web")
+    parser.add_argument("--allow-duplicate", action="store_true", help="Allow a deliberate resend, such as replacing a sticker with a media image")
     args = parser.parse_args()
 
     post_date = dt.date.fromisoformat(args.date) if args.date else dt.date.today()
@@ -153,7 +167,7 @@ def main() -> int:
         post = json.loads(post_file.read_text(encoding="utf-8"))
     else:
         post = build_post(post_date, args.output_dir)
-    image = args.output_dir / f"{post_date.isoformat()}.png"
+    image = args.image or (args.output_dir / f"{post_date.isoformat()}.png")
     if not image.is_file():
         raise SystemExit(f"Missing {image}. Run render_social_post.py first.")
     message = whatsapp_text(post)
@@ -165,7 +179,7 @@ def main() -> int:
         raise SystemExit(f"Chrome profile not found: {args.profile}")
     recipient = normalize_search_number(args.to)
     print("Sending through browser session...")
-    print(send_post(args.profile, recipient, image, message, args.expected_contact))
+    print(send_post(args.profile, recipient, image, message, args.expected_contact, args.allow_duplicate))
     return 0
 
 
