@@ -21,6 +21,10 @@
 - `index.html` is the main landing page and keeps its own inline CSS.
 - `schedule.html` embeds the Tally scheduling form.
 - `google-apps-script/LeadNotifier.gs` polls a connected Google Sheet and emails new leads to the public owner email.
+- `social_content.py` generates date-specific caption/song/hashtag content and brand-safe HTML/JSON/Markdown output.
+- `render_social_post.py` renders the HTML card with the website logo to a square PNG.
+- `whatsapp_browser_send.py` can send the generated image and caption through a signed-in WhatsApp Web browser profile; preview is the default and `--send` is explicit.
+- `run_daily_social_post.sh` chains generation, rendering, and preview/send for daily use; `SEND=1` is required for delivery.
 - `robots.txt` allows crawling and points to `sitemap.xml`.
 - All public HTML pages are listed in `sitemap.xml`.
 
@@ -39,8 +43,10 @@
 2. Add real course dates, pricing, prerequisites, accepted provider details, policies, reviews, and instructor credentials only after verification.
 3. Measure Tally submissions, phone clicks, email clicks, organic landing pages, and course-specific conversion rates.
 4. Add real testimonials or outcomes with permission and attribution.
-5. Improve the form with course-specific preselection only if the Tally form supports a verified query/prefill mechanism.
-6. Keep the sitemap `lastmod` date accurate whenever public pages materially change.
+5. Use `social_content.py` plus `render_social_post.py` for the daily branded post; configure `OPENAI_API_KEY` for fresh AI copy, otherwise review the fallback copy.
+6. Use `whatsapp_browser_send.py --send` only with a signed-in browser profile and an explicitly checked recipient.
+7. Improve the form with course-specific preselection only if the Tally form supports a verified query/prefill mechanism.
+8. Keep the sitemap `lastmod` date accurate whenever public pages materially change.
 
 ## Validation commands
 

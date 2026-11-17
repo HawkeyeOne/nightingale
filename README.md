@@ -21,6 +21,10 @@ Static marketing site for **Nightingale RN Academy LLC**, based in Missouri City
 - `site-pages.css` — shared styles for detail pages; the home page has its own inline styles.
 - `assets/` — logo and course photography.
 - `google-apps-script/LeadNotifier.gs` — optional Google Sheets lead-notification automation.
+- `social_content.py` — daily AI-ready branded post generator with a safe fallback library.
+- `render_social_post.py` — renders the branded HTML card to a 1080×1080 PNG using the real logo.
+- `whatsapp_browser_send.py` — preview-first WhatsApp Web sender for the generated image and caption.
+- `run_daily_social_post.sh` — daily generate/render/send wrapper; sending requires explicit `SEND=1`.
 - `MEMORY.md` — maintained project context, business facts, guardrails, and next-step priorities.
 - `robots.txt`, `sitemap.xml` — crawl guidance and indexable URLs.
 
@@ -45,6 +49,32 @@ python3 -m http.server 8000
 Then open <http://localhost:8000/>.
 
 `main.py` is only the scaffold for the Python project and is not required to serve the website.
+
+## Daily WhatsApp content
+
+Generate a date-specific post, render its branded card, and preview the WhatsApp message:
+
+```bash
+python3 social_content.py --date 2026-11-17
+python3 render_social_post.py --date 2026-11-17
+python3 whatsapp_browser_send.py --date 2026-11-17 --to +12813239428 --expected-contact "Contact Name"
+```
+
+For a daily runner (still preview-only unless `SEND=1`):
+
+```bash
+WHATSAPP_EXPECTED_CONTACT="Contact Name" ./run_daily_social_post.sh
+```
+
+The generator uses `OPENAI_API_KEY`/`OPENAI_MODEL` when configured and otherwise uses its brand-safe fallback topics. Rendering and browser sending require Playwright in the Python environment. It writes JSON, Markdown, HTML, and PNG files under `social-posts/`; rerunning a date reuses the existing post unless `--force` is passed. The HTML card uses the website logo and navy/blue/gold palette. The song is a suggestion only; verify commercial audio availability and rights before posting.
+
+For an actual browser send, WhatsApp Web must already be signed in to a Chrome profile. Use `--send` only after checking the preview and recipient:
+
+```bash
+python3 whatsapp_browser_send.py --date 2026-11-17 --to +12813239428 --expected-contact "Contact Name" --profile /path/to/signed-in-profile --send
+```
+
+The sender refuses duplicate headlines in the chat and never sends by default. Do not commit browser profiles, cookies, tokens, private messages, or generated worktrees.
 
 ## Lead form setup
 

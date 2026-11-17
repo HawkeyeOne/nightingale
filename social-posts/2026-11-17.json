@@ -1,0 +1,30 @@
+{
+  "topic": "ACLS teamwork",
+  "headline": "Strong teams make every second count.",
+  "caption": "ACLS learning brings assessment, communication, decision-making, and team roles together. Nightingale RN Academy helps healthcare professionals prepare for structured cardiovascular emergency response in a focused learning environment in Missouri City. Ask about current ACLS availability for your school, employer, or renewal need. Call 713-281-7770 or visit our website.",
+  "song": "The Climb — Miley Cyrus",
+  "hashtags": [
+    "#ACLS",
+    "#HealthcareProfessionals",
+    "#ResuscitationTeam",
+    "#ClinicalSkills",
+    "#MissouriCity"
+  ],
+  "image_prompt": "A diverse healthcare team practicing coordinated emergency response in a modern simulation lab, navy uniforms with subtle gold accents, energetic but professional.",
+  "generated_by": "curated fallback",
+  "date": "2026-11-17",
+  "brand": {
+    "name": "Nightingale RN Academy",
+    "legal_name": "Nightingale RN Academy LLC",
+    "website": "https://www.nightingalernacademy.com/",
+    "phone": "713-281-7770",
+    "email": "nightingale.rn.academy@gmail.com",
+    "location": "Missouri City, Texas",
+    "service_area": "Greater Houston",
+    "navy": "#061a3a",
+    "blue": "#0b2a5c",
+    "gold": "#e7b551",
+    "text": "#cfd8ea",
+    "logo": "../assets/nightingale-logo.png"
+  }
+}
